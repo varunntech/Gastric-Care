@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastricCare - About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           GASTRICCARE - ABOUT PAGE STYLES
+           ============================================ */
+        
+        :root {
+            --primary-50: #eff6ff;
+            --primary-100: #dbeafe;
+            --primary-200: #bfdbfe;
+            --primary-300: #93c5fd;
+            --primary-400: #60a5fa;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-800: #1e40af;
+            --primary-900: #1e3a8a;
+            
+            --accent-50: #f0fdfa;
+            --accent-100: #ccfbf1;
+            --accent-200: #99f6e4;
+            --accent-300: #5eead4;
+            --accent-400: #2dd4bf;
+            --accent-500: #14b8a6;
+            --accent-600: #0d9488;
+            --accent-700: #0f766e;
+            
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-tertiary: #9ca3af;
+            
+            --border-light: #e5e7eb;
+            --border-medium: #d1d5db;
+            
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-blur: blur(20px);
+            
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
+            
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #6b7280;
+            --border-light: #374151;
+            --border-medium: #4b5563;
+            --glass-bg: rgba(30, 41, 59, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .page-background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 0% 0%, var(--primary-100) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 100%, var(--accent-100) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        [data-theme="dark"] .page-background {
+            background: 
+                radial-gradient(ellipse at 0% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 100%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 72px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-600);
+            background: var(--primary-100);
+        }
+        
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            background: var(--glass-bg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            margin-left: 16px;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+        }
+        
+        /* ============================================
+           MAIN CONTENT
+           ============================================ */
+        
+        .main-content {
+            padding: 120px 24px 80px;
+        }
+        
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        
+        .about-hero {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+        
+        .about-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--primary-100);
+            color: var(--primary-700);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .about-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .about-hero-title span {
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .about-hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* ============================================
+           MISSION SECTION
+           ============================================ */
+        
+        .mission-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        
+        .mission-content {
+            padding: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+        }
+        
+        .mission-label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-600);
+            margin-bottom: 16px;
+        }
+        
+        .mission-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+        
+        .mission-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        
+        .mission-visual {
+            position: relative;
+            height: 400px;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .mission-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .mission-stats {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-600);
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* ============================================
+           VALUES SECTION
+           ============================================ */
+        
+        .values-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+        }
+        
+        .values-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .values-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        
+        .values-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .value-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            padding: 40px 32px;
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .value-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .value-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        
+        .value-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9375rem;
+        }
+        
+        /* ============================================
+           TEAM SECTION
+           ============================================ */
+        
+        .team-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+        }
+        
+        .team-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .team-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        
+        .team-subtitle {
+            color: var(--text-secondary);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .team-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-avatar {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary-400), var(--accent-400));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .team-info {
+            padding: 24px;
+        }
+        
+        .team-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .team-role {
+            font-size: 0.875rem;
+            color: var(--primary-600);
+            font-weight: 500;
+        }
+        
+        /* ============================================
+           CTA SECTION
+           ============================================ */
+        
+        .cta-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 64px 48px;
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-500));
+            border-radius: var(--radius-2xl);
+            text-align: center;
+            color: white;
+            box-shadow: var(--shadow-xl), 0 0 40px -10px var(--primary-500);
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .cta-description {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-xl);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-cta-primary {
+            background: white;
+            color: var(--primary-600);
+        }
+        
+        .btn-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-cta-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-cta-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        
+        .footer {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 40px 24px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+        
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+        
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        
+        @media (max-width: 1024px) {
+            .mission-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-visual {
+                order: -1;
+                height: 300px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .about-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 40px 24px;
+            }
+            
+            .navbar-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-background"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/home" class="navbar-logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                </div>
+                <span class="logo-text">GastricCare</span>
+            </a>
+            
+            <div class="navbar-nav">
+                <a href="/home" class="nav-link">Home</a>
+                <a href="/about" class="nav-link active">About Us</a>
+                <a href="/risk" class="nav-link">Risk Assessment</a>
+                {% if name %}
+                <a href="/dashboard" class="nav-link">History</a>
+                {% endif %}
+                {% if is_admin %}
+                <a href="/admin" class="nav-link">Admin</a>
+                {% endif %}
+                <a href="/donate" class="nav-link">Donate</a>
+                {% if name %}
+                <a href="/logout" class="nav-link">Logout</a>
+                {% else %}
+                <a href="/login" class="nav-link">Login</a>
+                {% endif %}
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <svg id="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <svg id="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="about-hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+                About GastricCare
+            </div>
+            <h1 class="about-hero-title">
+                Fighting Gastric Cancer Through <span>Early Detection</span>
+            </h1>
+            <p class="about-hero-description">
+                We are a dedicated team of healthcare professionals, data scientists, and technologists 
+                committed to making gastric cancer screening accessible to everyone.
+            </p>
+        </section>
+        
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <div class="mission-content">
+                <p class="mission-label">Our Mission</p>
+                <h2 class="mission-title">Making Early Detection Accessible to All</h2>
+                <p class="mission-text">
+                    Gastric cancer is one of the leading causes of cancer-related deaths worldwide, 
+                    yet early detection can significantly improve survival rates. Our mission is to 
+                    leverage the power of artificial intelligence to provide accessible, accurate, 
+                    and immediate risk assessments.
+                </p>
+                <p class="mission-text">
+                    We believe that everyone deserves access to quality healthcare screening, 
+                    regardless of their location or economic status. Through our platform, we aim 
+                    to democratize gastric cancer screening and save lives through early detection.
+                </p>
+            </div>
+            <div class="mission-visual">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop" alt="Healthcare Team">
+                <div class="mission-stats">
+                    <div class="stat-card">
+                        <p class="stat-value">50K+</p>
+                        <p class="stat-label">Assessments</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-value">98%</p>
+                        <p class="stat-label">Accuracy</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-value">24/7</p>
+                        <p class="stat-label">Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Values Section -->
+        <section class="values-section">
+            <div class="values-header">
+                <h2 class="values-title">Our Core Values</h2>
+                <p class="values-subtitle">The principles that guide everything we do</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Patient Safety First</h3>
+                    <p class="value-description">
+                        Every decision we make prioritizes the well-being and safety of our patients. 
+                        We maintain the highest standards of data security and medical ethics.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Global Accessibility</h3>
+                    <p class="value-description">
+                        We believe healthcare is a human right. Our platform is designed to be 
+                        accessible to everyone, everywhere, regardless of their background.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Innovation Driven</h3>
+                    <p class="value-description">
+                        We continuously invest in research and development to improve our AI models 
+                        and provide the most accurate risk assessments possible.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="team-header">
+                <h2 class="team-title">Meet Our Team</h2>
+                <p class="team-subtitle">The passionate people behind GastricCare</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">👨‍💻</div>
+                    <div class="team-info">
+                        <h3 class="team-name">Varun Kumar</h3>
+                        <p class="team-role">BCA, SMS Varanasi</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👩‍💻</div>
+                    <div class="team-info">
+                        <h3 class="team-name">Nandini Kumari</h3>
+                        <p class="team-role">BCA, SMS Varanasi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 class="cta-title">Ready to Check Your Risk?</h2>
+            <p class="cta-description">
+                Take the first step towards protecting your health. Our AI-powered assessment 
+                takes just a few minutes and could save your life.
+            </p>
+            <div class="cta-buttons">
+                <a href="/risk" class="btn-cta btn-cta-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4"/>
+                        <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                    Start Assessment
+                </a>
+                <a href="/donate" class="btn-cta btn-cta-secondary">
+                    Support Our Mission
+                </a>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">© 2024 GastricCare. All rights reserved. Made with ❤️ for better health.</p>
+        </footer>
+    </main>
+    
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const moonIcon = document.getElementById('moon-icon');
+            const sunIcon = document.getElementById('sun-icon');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        if (savedTheme === 'dark') {
+            document.getElementById('moon-icon').style.display = 'none';
+            document.getElementById('sun-icon').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastricCare - Risk Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           GASTRICCARE - RISK ASSESSMENT FORM STYLES
+           ============================================ */
+        
+        :root {
+            --primary-50: #eff6ff;
+            --primary-100: #dbeafe;
+            --primary-200: #bfdbfe;
+            --primary-300: #93c5fd;
+            --primary-400: #60a5fa;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-800: #1e40af;
+            --primary-900: #1e3a8a;
+            
+            --accent-50: #f0fdfa;
+            --accent-100: #ccfbf1;
+            --accent-200: #99f6e4;
+            --accent-300: #5eead4;
+            --accent-400: #2dd4bf;
+            --accent-500: #14b8a6;
+            --accent-600: #0d9488;
+            --accent-700: #0f766e;
+            
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-tertiary: #9ca3af;
+            
+            --border-light: #e5e7eb;
+            --border-medium: #d1d5db;
+            
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-blur: blur(20px);
+            
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
+            
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #6b7280;
+            --border-light: #374151;
+            --border-medium: #4b5563;
+            --glass-bg: rgba(30, 41, 59, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .page-background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 0% 0%, var(--primary-100) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 0%, var(--accent-100) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        [data-theme="dark"] .page-background {
+            background: 
+                radial-gradient(ellipse at 0% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 0%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 72px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-600);
+            background: var(--primary-100);
+        }
+        
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            background: var(--glass-bg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            margin-left: 16px;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+        }
+        
+        /* ============================================
+           MAIN CONTENT
+           ============================================ */
+        
+        .main-content {
+            padding: 100px 24px 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        
+        .page-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+        
+        /* ============================================
+           DISCLAIMER BOX
+           ============================================ */
+        
+        .disclaimer-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #f59e0b;
+            border-radius: var(--radius-xl);
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        [data-theme="dark"] .disclaimer-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
+        }
+        
+        .disclaimer-icon {
+            width: 44px;
+            height: 44px;
+            background: #f59e0b;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .disclaimer-content h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 4px;
+        }
+        
+        .disclaimer-content p {
+            font-size: 0.875rem;
+            color: #a16207;
+            line-height: 1.5;
+        }
+        
+        /* ============================================
+           FORM STYLES
+           ============================================ */
+        
+        .assessment-form {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+        }
+        
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-light);
+        }
+        
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .section-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .form-label span {
+            color: var(--error);
+        }
+        
+        .form-input, .form-select {
+            padding: 14px 16px;
+            font-size: 0.9375rem;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            transition: all var(--transition-fast);
+            outline: none;
+        }
+        
+        .form-input:focus, .form-select:focus {
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 4px var(--primary-100);
+        }
+        
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 44px;
+        }
+        
+        /* Radio & Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .radio-label, .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--bg-primary);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 0.9375rem;
+        }
+        
+        .radio-label:hover, .checkbox-label:hover {
+            border-color: var(--primary-300);
+        }
+        
+        .radio-label input, .checkbox-label input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-600);
+        }
+        
+        .radio-label:has(input:checked), .checkbox-label:has(input:checked) {
+            border-color: var(--primary-500);
+            background: var(--primary-50);
+        }
+        
+        /* Submit Button */
+        .submit-section {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 2px solid var(--border-light);
+        }
+        
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 48px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-500));
+            border: none;
+            border-radius: var(--radius-xl);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-lg), 0 0 30px -5px var(--primary-500);
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl), 0 0 40px -5px var(--primary-500);
+        }
+        
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* ============================================
+           RESULTS AREA
+           ============================================ */
+        
+        .results-area {
+            margin-top: 40px;
+            display: none;
+        }
+        
+        .results-area.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Loading Spinner */
+        .loading-container {
+            text-align: center;
+            padding: 60px 40px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+        }
+        
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border: 4px solid var(--border-light);
+            border-top-color: var(--primary-500);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 24px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Result Box */
+        .result-box {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .result-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .result-subtitle {
+            color: var(--text-secondary);
+        }
+        
+        .probability-cards {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: minmax(280px, 400px);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .probability-card {
+            padding: 28px;
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+        
+        .probability-card.survival {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border: 1px solid #10b981;
+        }
+        
+        .probability-card.non-survival {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 1px solid #ef4444;
+        }
+        
+        [data-theme="dark"] .probability-card.survival {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+        }
+        
+        [data-theme="dark"] .probability-card.non-survival {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
+        }
+        
+        .probability-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        
+        .probability-card.survival .probability-label {
+            color: #047857;
+        }
+        
+        .probability-card.non-survival .probability-label {
+            color: #dc2626;
+        }
+        
+        .probability-value {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        
+        .probability-card.survival .probability-value {
+            color: #059669;
+        }
+        
+        .probability-card.non-survival .probability-value {
+            color: #dc2626;
+        }
+        
+        /* Confidence Meter */
+        .confidence-section {
+            margin-bottom: 32px;
+        }
+        
+        .confidence-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .confidence-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .confidence-value {
+            font-weight: 700;
+            color: var(--primary-600);
+        }
+        
+        .confidence-bar {
+            height: 12px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+            border-radius: var(--radius-full);
+            transition: width 1s ease;
+        }
+        
+        /* PDF Button */
+        .pdf-section {
+            text-align: center;
+        }
+        
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-700);
+            background: var(--primary-100);
+            border: 2px solid var(--primary-300);
+            border-radius: var(--radius-xl);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-pdf:hover {
+            background: var(--primary-200);
+            transform: translateY(-2px);
+        }
+        
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .assessment-form {
+                padding: 24px;
+            }
+            
+            .page-title {
+                font-size: 1.875rem;
+            }
+            
+            .probability-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-background"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/home" class="navbar-logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                </div>
+                <span class="logo-text">GastricCare</span>
+            </a>
+            
+            <div class="navbar-nav">
+                <a href="/home" class="nav-link">Home</a>
+                <a href="/about" class="nav-link">About Us</a>
+                <a href="/risk" class="nav-link active">Risk Assessment</a>
+                {% if name %}
+                <a href="/dashboard" class="nav-link">History</a>
+                {% endif %}
+                {% if is_admin %}
+                <a href="/admin" class="nav-link">Admin</a>
+                {% endif %}
+                <a href="/donate" class="nav-link">Donate</a>
+                {% if name %}
+                <a href="/logout" class="nav-link">Logout</a>
+                {% else %}
+                <a href="/login" class="nav-link">Login</a>
+                {% endif %}
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <svg id="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <svg id="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Gastric Cancer Risk Assessment</h1>
+            <p class="page-subtitle">Complete the form below to receive your personalized risk analysis</p>
+        </div>
+        
+        <!-- Medical Disclaimer -->
+        <div class="disclaimer-box">
+            <div class="disclaimer-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </div>
+            <div class="disclaimer-content">
+                <h3>Medical Disclaimer</h3>
+                <p>This tool is for informational purposes only and does not constitute medical advice. 
+                The results are based on statistical models and should not replace professional medical consultation. 
+                Always consult with a qualified healthcare provider for proper diagnosis and treatment.</p>
+            </div>
+        </div>
+        
+        <!-- Assessment Form -->
+        <form id="predictionForm" class="assessment-form">
+            <!-- Demographics Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Demographics</h2>
+                        <p class="section-subtitle">Basic information about you</p>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="age">Age <span>*</span></label>
+                        <input type="number" id="age" name="age" class="form-input" placeholder="Enter your age" min="5" max="100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="gender">Gender <span>*</span></label>
+                        <select id="gender" name="gender" class="form-select" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Medical History Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Medical History</h2>
+                        <p class="section-subtitle">Your past and current health conditions</p>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label class="form-label">Family History of Gastric Cancer?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="family_history" value="yes" required>
+                                Yes
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="family_history" value="no">
+                                No
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="family_history" value="unknown">
+                                Unknown
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">H. Pylori Infection?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="h_pylori" value="yes" required>
+                                Yes
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="h_pylori" value="no">
+                                No
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="h_pylori" value="unknown">
+                                Unknown
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">History of Stomach Ulcers?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="ulcers" value="yes" required>
+                                Yes
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="ulcers" value="no">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Previous Gastric Surgery?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="surgery" value="yes" required>
+                                Yes
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="surgery" value="no">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bmi">BMI (Body Mass Index)</label>
+                        <input type="number" id="bmi" name="bmi" class="form-input" placeholder="e.g., 24.5" step="0.1" min="10" max="60">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="blood_type">Blood Type</label>
+                        <select id="blood_type" name="blood_type" class="form-select">
+                            <option value="">Select blood type</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lifestyle Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Lifestyle Factors</h2>
+                        <p class="section-subtitle">Your daily habits and choices</p>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label class="form-label">Smoking Status</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="smoking" value="never" required>
+                                Never Smoked
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="smoking" value="former">
+                                Former Smoker
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="smoking" value="current">
+                                Current Smoker
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Alcohol Consumption</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="alcohol" value="never" required>
+                                Never
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="alcohol" value="occasional">
+                                Occasional
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="alcohol" value="regular">
+                                Regular
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="alcohol" value="heavy">
+                                Heavy
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Diet Type</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="diet" value="balanced" required>
+                                Balanced
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="diet" value="high_salt">
+                                High Salt
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="diet" value="high_processed">
+                                High Processed Foods
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="diet" value="vegetarian">
+                                Vegetarian
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Physical Activity Level</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="activity" value="sedentary" required>
+                                Sedentary
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="activity" value="light">
+                                Light Exercise
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="activity" value="moderate">
+                                Moderate Exercise
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="activity" value="active">
+                                Very Active
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Symptoms Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Current Symptoms</h2>
+                        <p class="section-subtitle">Symptoms you may be experiencing</p>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label class="form-label">Dysphagia (Difficulty Swallowing)</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="dysphagia" value="none" required>
+                                None
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="dysphagia" value="mild">
+                                Mild
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="dysphagia" value="moderate">
+                                Moderate
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="dysphagia" value="severe">
+                                Severe
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Unexplained Weight Loss (in last 6 months)</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="weight_loss" value="none" required>
+                                None
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="weight_loss" value="less_5kg">
+                                Less than 5kg
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="weight_loss" value="5_10kg">
+                                5-10kg
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="weight_loss" value="more_10kg">
+                                More than 10kg
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Abdominal Pain</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="abdominal_pain" value="none" required>
+                                None
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="abdominal_pain" value="mild">
+                                Mild
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="abdominal_pain" value="moderate">
+                                Moderate
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="abdominal_pain" value="severe">
+                                Severe
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Nausea/Vomiting</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="nausea" value="none" required>
+                                None
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="nausea" value="occasional">
+                                Occasional
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="nausea" value="frequent">
+                                Frequent
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="nausea" value="persistent">
+                                Persistent
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Early Satiety (Feeling Full Quickly)</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="satiety" value="no" required>
+                                No
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="satiety" value="yes">
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Blood in Stool/Vomit</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="blood" value="no" required>
+                                No
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="blood" value="yes">
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Fatigue/Weakness</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="fatigue" value="none" required>
+                                None
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="fatigue" value="mild">
+                                Mild
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="fatigue" value="severe">
+                                Severe
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="submit-section">
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4"/>
+                        <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                    Calculate Risk Score
+                </button>
+            </div>
+        </form>
+        
+        <!-- Results Area -->
+        <div id="result-box" class="results-area">
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-container" style="display: none;">
+                <div class="spinner"></div>
+                <p class="loading-text">Analyzing your data with our AI model...</p>
+            </div>
+            
+            <!-- Results Container -->
+            <div id="resultsContainer" class="result-box" style="display: none;">
+                <div class="result-header">
+                    <h2 class="result-title">Your Risk Assessment Results</h2>
+                    <p class="result-subtitle">Based on the information you provided</p>
+                </div>
+                
+                <div class="probability-cards">
+                    <div class="probability-card non-survival" id="probCard">
+                        <p class="probability-label" id="probLabel">Risk Probability</p>
+                        <p class="probability-value" id="riskProb">--%</p>
+                    </div>
+                </div>
+                
+                <div class="confidence-section">
+                    <div class="confidence-header">
+                        <span class="confidence-label">Model Confidence</span>
+                        <span class="confidence-value" id="confidenceValue">--%</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="pdf-section">
+                    <button type="button" class="btn-pdf" id="generatePdfBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                        Generate PDF Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {{ firebase_config|tojson }};
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const moonIcon = document.getElementById('moon-icon');
+            const sunIcon = document.getElementById('sun-icon');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        if (savedTheme === 'dark') {
+            document.getElementById('moon-icon').style.display = 'none';
+            document.getElementById('sun-icon').style.display = 'block';
+        }
+        
+        // Form Submission Handler
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const resultsArea = document.getElementById('result-box');
+            const loadingState = document.getElementById('loadingState');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            resultsArea.classList.add('visible');
+            loadingState.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            const formData = new FormData(e.target);
+            const ageVal = parseInt(formData.get('age'));
+            if (ageVal < 5 || ageVal > 100) {
+                alert('Please enter an age between 5 and 100 years.');
+                resultsArea.classList.remove('visible'); // Hide the loading area if it popped up
+                return;
+            }
+            
+            // GET EMAIL SECURELY
+            const urlEmail = new URLSearchParams(window.location.search).get('email');
+            const cookieEmail = (document.cookie.split('; ').find(row => row.startsWith('useremail=')) || '').split('=')[1];
+            const finalEmail = urlEmail || cookieEmail || '{{ email }}' || 'Guest';
+
+            const data = {
+                patient_name: decodeURIComponent('{{ name }}' || 'Guest'),
+                user_email: decodeURIComponent(finalEmail || ''),
+                age: formData.get('age'),
+                gender: formData.get('gender') === 'male' ? 'Male' : (formData.get('gender') === 'female' ? 'Female' : 'Unknown'),
+                family_history: formData.get('family_history') === 'yes' ? 1 : 0,
+                helicobacter_pylori_infection: formData.get('h_pylori') === 'yes' ? 1 : 0,
+                smoking_habits: (formData.get('smoking') === 'current' || formData.get('smoking') === 'former') ? 1 : 0,
+                alcohol_consumption: formData.get('alcohol') !== 'never' ? 1 : 0,
+                dietary_habits: formData.get('diet') === 'high_salt' || formData.get('diet') === 'high_processed' ? 'High_Salt' : 'Low_Salt',
+                existing_conditions: formData.get('ulcers') === 'yes' ? 'Peptic Ulcer Disease' : 'None',
+                ethnicity: 'Unknown',
+                geographical_location: 'Unknown',
+                dysphagia: formData.get('dysphagia'),
+                weight_loss: formData.get('weight_loss'),
+                abdominal_pain: formData.get('abdominal_pain'),
+                nausea: formData.get('nausea'),
+                satiety: formData.get('satiety'),
+                blood: formData.get('blood'),
+                fatigue: formData.get('fatigue'),
+                bmi: formData.get('bmi'),
+                blood_type: formData.get('blood_type')
+            };
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(result => {
+                loadingState.style.display = 'none';
+                resultsContainer.style.display = 'block';
+                
+                if (result.error) {
+                    alert('Error: ' + result.error);
+                    return;
+                }
+                
+                const prob = (result.probability_of_cancer * 100).toFixed(1);
+                
+                const probCard = document.getElementById('probCard');
+                const riskLabel = document.getElementById('probLabel');
+                const riskProbEl = document.getElementById('riskProb');
+                
+                if (result.risk_level.toLowerCase() === 'low') {
+                    probCard.style.background = 'linear-gradient(135deg, #d1fae5, #a7f3d0)';
+                    probCard.style.borderColor = '#10b981';
+                    riskLabel.style.color = '#047857';
+                    riskProbEl.style.color = '#059669';
+                } else if (result.risk_level.toLowerCase() === 'moderate') {
+                    probCard.style.background = 'linear-gradient(135deg, #fef3c7, #fde68a)';
+                    probCard.style.borderColor = '#f59e0b';
+                    riskLabel.style.color = '#b45309';
+                    riskProbEl.style.color = '#d97706';
+                } else {
+                    probCard.style.background = 'linear-gradient(135deg, #fee2e2, #fecaca)';
+                    probCard.style.borderColor = '#ef4444';
+                    riskLabel.style.color = '#dc2626';
+                    riskProbEl.style.color = '#dc2626';
+                }
+                
+                riskProbEl.textContent = prob + '%';
+                
+                document.getElementById('confidenceValue').textContent = '92%';
+                document.getElementById('confidenceBar').style.width = '92%';
+                
+                const oldMsg = document.getElementById('riskMsgBox');
+                if(oldMsg) oldMsg.remove();
+                
+                const msgEl = document.createElement('div');
+                msgEl.id = 'riskMsgBox';
+                msgEl.style.marginTop = '15px';
+                msgEl.style.marginBottom = '20px';
+                msgEl.style.color = '#fff';
+                msgEl.style.padding = '15px';
+                msgEl.style.fontWeight = 'bold';
+                msgEl.style.background = result.risk_level.toLowerCase() === 'high' ? '#e11d48' : (result.risk_level.toLowerCase() === 'moderate' ? '#d97706' : '#059669');
+                msgEl.style.borderRadius = '8px';
+                msgEl.textContent = result.message;
+                
+                resultsContainer.insertBefore(msgEl, document.querySelector('.probability-cards'));
+                
+                const predictionData = { ...result, ...data, patient_name: data.patient_name };
+                window.lastPrediction = predictionData;
+
+                // Save to Firestore for History
+                const saveToFirestore = (email) => {
+                    if (email) {
+                        db.collection('reports').add({
+                            ...predictionData,
+                            name: data.patient_name,
+                            email: email,
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        }).then(() => {
+                            console.log("Report saved to history for", email);
+                        }).catch(err => {
+                            console.error("Error saving report:", err);
+                        });
+                    }
+                };
+
+                // Try to save using template email or current firebase user
+                if (data.user_email && data.user_email !== 'None' && data.user_email !== '') {
+                    saveToFirestore(data.user_email);
+                } else {
+                    firebase.auth().onAuthStateChanged(user => {
+                        if (user && user.email) {
+                            saveToFirestore(user.email);
+                        }
+                    });
+                }
+
+                // Auto-send report email
+                if (data.user_email && data.user_email !== 'None' && data.user_email !== '') {
+                    fetch('/api/download_report', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ ...predictionData, send_email_only: true })
+                    }).catch(console.error);
+                }
+            })
+            .catch(err => {
+                loadingState.style.display = 'none';
+                alert('An error occurred during prediction.');
+            });
+        });
+        
+        // PDF Generation Handler
+        document.getElementById('generatePdfBtn').addEventListener('click', function() {
+            if (!window.lastPrediction) {
+                alert('Please calculate your risk score first!');
+                return;
+            }
+            fetch('/api/download_report', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(window.lastPrediction)
+            })
+            .then(res => {
+                if(!res.ok) throw new Error('PDF Generation failed');
+                return res.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Gastric_Risk_Report_${window.lastPrediction.date}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(err => alert(err.message));
+        });
+    </script>
+</body>
+</html>

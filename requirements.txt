@@ -1,0 +1,11 @@
+flask
+pandas
+scikit-learn
+joblib
+flask-cors
+PyJWT
+fpdf
+pypdf
+gunicorn
+razorpay
+requests

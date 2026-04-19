@@ -1,0 +1,56 @@
+age
+family_history
+smoking_habits
+alcohol_consumption
+helicobacter_pylori_infection
+bmi
+gender_Female
+gender_Male
+ethnicity_African / Caribbean
+ethnicity_East Asian
+ethnicity_European
+ethnicity_Latin American
+ethnicity_Middle Eastern
+ethnicity_South Asian
+geographical_location_Africa
+geographical_location_East Asia
+geographical_location_Europe
+geographical_location_North America
+geographical_location_South America
+geographical_location_South Asia
+dietary_habits_High_Salt
+dietary_habits_Low_Salt
+existing_conditions_Chronic Gastritis
+existing_conditions_Diabetes
+existing_conditions_Unknown
+dysphagia_mild
+dysphagia_moderate
+dysphagia_none
+dysphagia_severe
+weight_loss_5_10kg
+weight_loss_less_5kg
+weight_loss_more_10kg
+weight_loss_none
+abdominal_pain_mild
+abdominal_pain_moderate
+abdominal_pain_none
+abdominal_pain_severe
+nausea_frequent
+nausea_none
+nausea_occasional
+nausea_persistent
+satiety_no
+satiety_yes
+blood_no
+blood_yes
+fatigue_mild
+fatigue_none
+fatigue_severe
+blood_type_A+
+blood_type_A-
+blood_type_AB+
+blood_type_AB-
+blood_type_B+
+blood_type_B-
+blood_type_O+
+blood_type_O-
