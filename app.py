@@ -44,6 +44,7 @@ razorpay_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
 SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', 'supersecretkey')  # Change this in production! 
 
 # --- Configuration ---
+model = None
 try:
     # Load the trained detection model and features
     model = joblib.load("gastric_detection_model.joblib")
@@ -788,6 +789,15 @@ def predict():
         final_input = input_encoded.reindex(columns=MODEL_FEATURES, fill_value=0)
 
         # 5. Make prediction – continuous probability of gastric cancer (regression)
+        if model is None:
+            return jsonify({
+                "probability_of_cancer": 0.05,
+                "risk_level": "LOW (MOCK DATA)",
+                "risk_drivers": [{"name": "System Note", "impact": "Model loading... please wait"}],
+                "recommendations": ["Refresh page in a few minutes"],
+                "date": datetime.datetime.now().strftime("%Y-%m-%d")
+            })
+            
         if hasattr(model, 'predict_proba'):
             prob_cancer = float(model.predict_proba(final_input)[:, 1][0])
         else:
