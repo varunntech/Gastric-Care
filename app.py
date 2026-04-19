@@ -479,9 +479,9 @@ def download_report():
     pdf.set_xy(55, 88)
     pdf.cell(5, 5, ":")
     
-    if risk_level == 'HIGH':
+    if 'HIGH' in risk_level:
         pdf.set_text_color(220, 20, 20)
-    elif risk_level == 'MODERATE':
+    elif 'MODERATE' in risk_level:
         pdf.set_text_color(220, 130, 0)
     else:
         pdf.set_text_color(10, 150, 50)

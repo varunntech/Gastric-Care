@@ -1351,7 +1351,8 @@
                 msgEl.style.color = '#fff';
                 msgEl.style.padding = '15px';
                 msgEl.style.fontWeight = 'bold';
-                msgEl.style.background = result.risk_level.toLowerCase() === 'high' ? '#e11d48' : (result.risk_level.toLowerCase() === 'moderate' ? '#d97706' : '#059669');
+                const riskLower = result.risk_level.toLowerCase();
+                msgEl.style.background = riskLower.includes('high') ? '#e11d48' : (riskLower.includes('moderate') ? '#d97706' : '#059669');
                 msgEl.style.borderRadius = '8px';
                 msgEl.textContent = result.message;
                 
