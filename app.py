@@ -49,9 +49,15 @@ try:
     model = joblib.load("gastric_detection_model.joblib")
     with open("gastric_detection_features.txt", "r") as f:
         MODEL_FEATURES = [line.strip() for line in f]
-except FileNotFoundError:
-    print("FATAL ERROR: Detection model or feature file not found. Run 'train_and_save.py' first.")
-    # exit() # Allow running even if model is missing for dev purposes
+except:
+    # HARDCODED FALLBACK TO PREVENT CRASHES
+    MODEL_FEATURES = [
+        "age", "gender", "ethnicity", "geographical_location", "family_history",
+        "smoking_habits", "alcohol_consumption", "dietary_habits", "existing_conditions",
+        "helicobacter_pylori_infection", "bmi", "dysphagia", "weight_loss",
+        "abdominal_pain", "nausea", "satiety", "blood", "fatigue", "blood_type"
+    ]
+    print("Warning: Loaded MODEL_FEATURES from hardcoded fallback.")
 
 
 
